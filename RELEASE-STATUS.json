@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "product": "MagicBoard",
+  "channel": "stable",
+  "status": "preview",
+  "version": "1.0.0",
+  "platform": "macOS",
+  "architecture": "Intel + Apple Silicon",
+  "bridgeVersion": "0.9.10",
+  "publicDownloadEnabled": false,
+  "note": "权利人信息尚未确认，公开下载保持关闭。"
+}
