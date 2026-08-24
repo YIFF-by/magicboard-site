@@ -7209,11 +7209,7 @@ a {
       button.addEventListener("click", function () {
         if (!downloadUrl) return;
         if (eulaUrl) {
-          var accepted = window.confirm("下载 MagicBoard 前，请先阅读最终用户许可协议。
-
-允许使用软件制作个人或商业作品；禁止复制、换皮、重新打包、转售、出租或提供未经授权的收费托管服务。
-
-选择“确定”表示你已阅读并同意；选择“取消”将打开完整协议。");
+          var accepted = window.confirm("下载 MagicBoard 前，请先阅读最终用户许可协议。\n\n允许使用软件制作个人或商业作品；禁止复制、换皮、重新打包、转售、出租或提供未经授权的收费托管服务。\n\n选择“确定”表示你已阅读并同意；选择“取消”将打开完整协议。");
           if (!accepted) {
             window.open(eulaUrl, "_blank", "noopener,noreferrer");
             return;
