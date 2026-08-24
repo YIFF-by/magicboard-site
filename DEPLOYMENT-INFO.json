@@ -2,7 +2,10 @@
   "schemaVersion": 1,
   "product": "MagicBoard",
   "publicBrand": "麦橘TEL",
+  "pagesUrl": "https://yiff-by.github.io/magicboard-site/",
+  "repositoryUrl": "https://github.com/YIFF-by/magicboard-site",
   "sourceDistribution": "closed-source",
   "installationDownload": "disabled-pending-rights-holder-confirmation",
-  "generatedAt": "2026-08-23T17:16:03.397Z"
+  "mobileOptimized": true,
+  "generatedAt": "2026-08-24T01:50:55.400Z"
 }

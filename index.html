@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="description" content="MagicBoard 智能分镜：从文案拆解、镜头规划到拍摄交付的本地创作工作台。">
   <meta name="application-name" content="MagicBoard">
   <meta name="apple-mobile-web-app-title" content="MagicBoard">
@@ -6635,14 +6635,318 @@ a {
   }
 
   @media (max-width: 760px) {
+    html {
+      scroll-padding-top: 24px;
+    }
+
+    body.landing-active .landing-view {
+      overflow-x: clip;
+    }
+
     .landing-nav {
+      width: calc(100% - 24px);
+      min-height: 0;
+      margin-top: max(14px, env(safe-area-inset-top));
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-rows: 48px 48px;
+      gap: 8px 10px;
+      padding: 0;
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
       backdrop-filter: blur(10px) saturate(1.08);
       -webkit-backdrop-filter: blur(10px) saturate(1.08);
     }
 
+    body.landing-active .landing-nav > .landing-brand {
+      grid-column: 1;
+      grid-row: 1;
+      justify-self: start;
+      width: auto;
+      min-width: 0;
+      height: 48px;
+      min-height: 48px;
+      padding: 0 16px 0 12px;
+    }
+
+    body.landing-active .landing-view .landing-brand-text {
+      display: inline-block;
+      font-size: 17px;
+    }
+
+    body.landing-active .landing-nav > .landing-nav-cta {
+      grid-column: 2;
+      grid-row: 1;
+      justify-self: end;
+      min-width: 104px;
+      height: 48px;
+      min-height: 48px;
+      padding-inline: 16px;
+    }
+
+    body.landing-active .landing-nav > nav {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      justify-self: stretch;
+      width: 100%;
+      height: 48px;
+      min-height: 48px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 4px;
+      padding: 2px;
+      overflow: visible;
+    }
+
+    body.landing-active .landing-nav > nav a {
+      width: 100%;
+      min-width: 0;
+      height: 44px;
+      font-size: 13px;
+    }
+
+    body.landing-active .landing-hero {
+      width: calc(100% - 32px);
+      min-height: 0;
+      margin-top: 0;
+      padding-top: clamp(52px, 10vw, 68px);
+      padding-bottom: 48px;
+    }
+
+    body.landing-active .landing-hero-copy {
+      width: 100%;
+    }
+
+    body.landing-active .landing-hero h1 {
+      max-width: 360px;
+      font-size: clamp(40px, 11.4vw, 48px);
+      line-height: 1.04;
+      letter-spacing: -.045em;
+    }
+
+    body.landing-active .landing-title-line:first-child,
+    body.landing-active .landing-hero h1 > span:first-child {
+      margin-bottom: 8px;
+      font-size: .64em;
+      line-height: 1;
+      letter-spacing: -.025em;
+    }
+
+    body.landing-active .landing-hero p {
+      max-width: 31em;
+      margin-top: 22px;
+      font-size: 15px;
+      line-height: 1.68;
+    }
+
+    body.landing-active .landing-actions {
+      width: 100%;
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    body.landing-active .landing-primary,
+    body.landing-active .landing-secondary {
+      width: 100%;
+      min-height: 50px;
+      padding-inline: 18px;
+    }
+
+    body.landing-active .landing-primary[data-download-package]:disabled {
+      opacity: .68;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    body.landing-active .landing-primary.is-download-pending i {
+      display: none;
+    }
+
+    body.landing-active .landing-product-preview {
+      width: 100%;
+      margin-top: 40px;
+    }
+
     .landing-preview-window {
+      border-radius: 22px;
       backdrop-filter: blur(8px) saturate(1.06);
       -webkit-backdrop-filter: blur(8px) saturate(1.06);
+    }
+
+    body.landing-active .landing-preview-top {
+      min-height: 48px;
+      padding-inline: 14px;
+    }
+
+    body.landing-active .landing-preview-top span {
+      width: 9px;
+      height: 9px;
+    }
+
+    body.landing-active .landing-preview-top b {
+      width: calc(100% - 94px);
+      overflow: hidden;
+      font-size: 12px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    body.landing-active .landing-preview-body {
+      display: block;
+      min-height: 0;
+    }
+
+    body.landing-active .landing-preview-sidebar {
+      display: none;
+    }
+
+    body.landing-active .landing-preview-main {
+      display: grid;
+      grid-template-rows: auto auto auto auto;
+      gap: 10px;
+      padding: 14px;
+    }
+
+    body.landing-active .landing-preview-copy {
+      display: block;
+      min-height: 76px;
+      padding: 36px 14px 13px;
+      border-radius: 14px;
+      text-align: left;
+    }
+
+    body.landing-active .landing-preview-copy b {
+      top: 13px;
+      left: 14px;
+      font-size: 11px;
+    }
+
+    body.landing-active .landing-preview-copy p {
+      width: 100%;
+      max-width: none;
+      display: -webkit-box;
+      overflow: hidden;
+      font-size: 14px;
+      line-height: 1.45;
+      text-align: left;
+      white-space: normal;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    body.landing-active .landing-preview-board,
+    body.landing-active .landing-preview-segments {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    body.landing-active .landing-preview-board article {
+      min-height: 104px;
+      gap: 6px;
+      padding: 12px 10px;
+      border-radius: 13px;
+    }
+
+    body.landing-active .landing-preview-board span {
+      font-size: 9px;
+    }
+
+    body.landing-active .landing-preview-board b {
+      font-size: 11px;
+      line-height: 1.32;
+    }
+
+    body.landing-active .landing-preview-board p {
+      font-size: 12px;
+      line-height: 1.2;
+    }
+
+    body.landing-active .landing-preview-segments article {
+      min-height: 92px;
+      padding: 12px 10px;
+      border-radius: 14px;
+    }
+
+    body.landing-active .landing-preview-segments b {
+      font-size: 18px;
+    }
+
+    body.landing-active .landing-preview-segments span {
+      font-size: 10px;
+      line-height: 1.25;
+    }
+
+    body.landing-active .landing-preview-pipeline {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 6px;
+      margin-top: 2px;
+    }
+
+    body.landing-active .landing-preview-pipeline span {
+      min-height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255, 246, 232, .1);
+      border-radius: 999px;
+      background: rgba(255, 248, 239, .045);
+      font-size: 10px;
+    }
+
+    body.landing-active .landing-preview-pipeline i {
+      display: none;
+    }
+
+    body.landing-active .landing-section,
+    body.landing-active .landing-core-features {
+      width: calc(100% - 32px);
+      margin-top: 72px;
+    }
+
+    body.landing-active .landing-core-features {
+      margin-bottom: 72px;
+      padding: 40px 16px;
+      border-radius: 24px;
+    }
+
+    body.landing-active .c1-title,
+    body.landing-active .landing-section-head h2,
+    body.landing-active .landing-showcase h2 {
+      font-size: clamp(30px, 9vw, 38px);
+      line-height: 1.12;
+    }
+
+    body.landing-active .c1-subtitle {
+      margin-bottom: 30px;
+      font-size: 15px;
+    }
+
+    body.landing-active .c1-card {
+      height: 288px;
+      min-height: 288px;
+    }
+
+    body.landing-active .landing-flow {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    body.landing-active .landing-flow article,
+    body.landing-active .landing-showcase {
+      min-height: 0;
+      padding: 22px;
+      border-radius: 20px;
+    }
+
+    body.landing-active .landing-showcase {
+      align-items: stretch;
+      gap: 24px;
+    }
+
+    body.landing-active .landing-showcase .landing-primary {
+      width: 100%;
     }
 
     .landing-view .flow-panel > .flow-ring--far {
@@ -6896,7 +7200,12 @@ a {
 
     downloadButtons.forEach(function (button) {
       button.disabled = !enabled;
+      button.setAttribute("aria-disabled", String(!enabled));
       button.title = enabled ? "下载 MagicBoard" : "公开下载地址准备中";
+      button.classList.toggle("is-download-pending", !enabled);
+      var label = button.querySelector(":scope > span:last-of-type");
+      if (label && !label.dataset.downloadLabel) label.dataset.downloadLabel = label.textContent;
+      if (label) label.textContent = enabled ? label.dataset.downloadLabel : "正式安装包准备中";
       button.addEventListener("click", function () {
         if (!downloadUrl) return;
         if (eulaUrl) {
