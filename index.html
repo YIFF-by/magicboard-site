@@ -6565,6 +6565,52 @@ a {
   }
 }
 
+@layer static {
+  /* Keep transformed workflow cards above their later-painted siblings. */
+  .landing-view .landing-workflow {
+    content-visibility: visible;
+    contain: none;
+    overflow: visible;
+  }
+
+  .landing-view .landing-flow {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+    margin: -8px;
+    padding: 8px;
+  }
+
+  .landing-view .landing-flow article.flow-frame {
+    position: relative;
+    z-index: 0;
+    overflow: visible;
+    transition: border-color 180ms var(--ease-out), box-shadow 220ms var(--ease-out);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .landing-view .landing-flow article.flow-frame:hover,
+    .landing-view .landing-flow article.flow-frame:focus-visible,
+    .landing-view .landing-flow article.flow-frame:focus-within,
+    .landing-view .landing-flow article.flow-frame[data-wobble-active="true"],
+    .landing-view .landing-flow article.flow-frame[data-wobble-settling="true"] {
+      z-index: 20;
+      border-color: rgba(255, 222, 178, .62);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .16),
+        0 0 0 1px rgba(246, 162, 83, .32),
+        0 20px 44px rgba(0, 0, 0, .28);
+    }
+  }
+
+  @media (max-width: 760px) {
+    .landing-view .landing-flow {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
 
 @layer static {
   .landing-section {
@@ -6971,7 +7017,6 @@ a {
   }
 }
 
-
 </style>
 </head>
 <body class="landing-active">
@@ -7291,6 +7336,7 @@ a {
       var rect = null;
       var pendingEvent = null;
       var frameId = 0;
+      var settleTimer = 0;
 
       function renderPointer() {
         frameId = 0;
@@ -7306,6 +7352,9 @@ a {
       }
 
       target.addEventListener("pointerenter", function () {
+        if (settleTimer) window.clearTimeout(settleTimer);
+        settleTimer = 0;
+        delete target.dataset.wobbleSettling;
         rect = target.getBoundingClientRect();
         target.dataset.wobbleActive = "true";
         gsap.set(target, { transformPerspective: 900, transformOrigin: "50% 50%", willChange: "transform" });
@@ -7324,6 +7373,7 @@ a {
         rect = null;
         pendingEvent = null;
         delete target.dataset.wobbleActive;
+        target.dataset.wobbleSettling = "true";
         xTo(0);
         yTo(0);
         rotateXTo(0);
@@ -7331,6 +7381,10 @@ a {
         scaleXTo(1);
         scaleYTo(1);
         gsap.to(target, { duration: 0.24, ease: "power3.out", clearProps: "willChange" });
+        settleTimer = window.setTimeout(function () {
+          delete target.dataset.wobbleSettling;
+          settleTimer = 0;
+        }, 280);
       });
     });
   }
