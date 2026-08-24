@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "product": "MagicBoard",
+  "rightsHolder": "麦橘TEL",
+  "rightsHolderType": "pseudonym",
+  "publicIdentityStatus": "confirmed",
+  "legalRightsHolder": "俞懿峰",
+  "identityStatus": "confirmed",
+  "officialWebsite": "https://yiff-by.github.io/magicboard-site/",
+  "supportEmail": "",
+  "supportContactStatus": "website-only",
+  "copyrightYear": 2026,
+  "licenseVersion": "1.0",
+  "licenseEffectiveDate": "2026-08-24",
+  "policy": {
+    "commercialUseOfUserOutputsAllowed": true,
+    "softwareRedistributionProhibited": true,
+    "softwareResaleProhibited": true,
+    "whiteLabelingProhibited": true,
+    "unauthorizedHostedServiceProhibited": true
+  }
+}
