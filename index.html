@@ -282,6 +282,73 @@
     background: #ffb172;
   }
 
+  .license-dialog-download {
+    padding-top: 26px;
+    text-align: center;
+  }
+
+  .license-dialog-download-icon {
+    display: grid;
+    width: 58px;
+    height: 58px;
+    margin: 0 auto 16px;
+    place-items: center;
+    border-radius: 16px;
+    color: #9bdeb1;
+    background: rgba(83, 166, 112, .15);
+  }
+
+  .license-dialog-download-icon svg {
+    width: 30px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .license-dialog-download h3 {
+    margin: 0;
+    color: #fffaf5;
+    font-size: 25px;
+    line-height: 1.25;
+    letter-spacing: -.035em;
+  }
+
+  .license-dialog-download > p {
+    max-width: 42ch;
+    margin: 12px auto 20px;
+    color: rgba(255, 244, 234, .7);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .license-dialog-download-meta {
+    display: grid;
+    gap: 6px;
+    padding: 15px 0;
+    border-block: 1px solid rgba(255, 235, 216, .1);
+    color: rgba(255, 244, 234, .62);
+    font-size: 13px;
+  }
+
+  .license-dialog-download-meta span:first-child {
+    color: rgba(255, 250, 245, .94);
+    font-size: 15px;
+    font-weight: 720;
+  }
+
+  .license-dialog-retry {
+    min-height: 50px;
+    margin-top: 18px;
+    text-decoration: none;
+  }
+
+  .license-dialog-done {
+    width: 100%;
+    margin-top: 10px;
+  }
+
   .license-dialog :is(button, a):focus-visible {
     outline: 3px solid rgba(255, 185, 124, .82);
     outline-offset: 3px;
@@ -7536,35 +7603,54 @@ a {
       </button>
     </header>
 
-    <p class="license-dialog-description" id="downloadLicenseDescription">下载 MagicBoard 前，请先了解这份简要使用边界，并阅读最终用户许可协议。</p>
+    <div id="downloadLicenseConsent">
+      <p class="license-dialog-description" id="downloadLicenseDescription">下载 MagicBoard 前，请先了解这份简要使用边界，并阅读最终用户许可协议。</p>
 
-    <div class="license-dialog-rules" aria-label="主要许可范围">
-      <div class="license-dialog-rule is-allowed">
-        <span aria-hidden="true">
-          <svg viewBox="0 0 24 24"><path d="m6.5 12.5 3.25 3.25L17.8 7.7"></path></svg>
-        </span>
-        <div><strong>可以使用</strong><p>使用 MagicBoard 制作个人作品或商业作品。</p></div>
+      <div class="license-dialog-rules" aria-label="主要许可范围">
+        <div class="license-dialog-rule is-allowed">
+          <span aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="m6.5 12.5 3.25 3.25L17.8 7.7"></path></svg>
+          </span>
+          <div><strong>可以使用</strong><p>使用 MagicBoard 制作个人作品或商业作品。</p></div>
+        </div>
+        <div class="license-dialog-rule is-restricted">
+          <span aria-hidden="true">
+            <svg viewBox="0 0 24 24"><rect x="6.5" y="10" width="11" height="9" rx="2"></rect><path d="M9 10V7.8a3 3 0 0 1 6 0V10"></path></svg>
+          </span>
+          <div><strong>禁止再分发</strong><p>不得复制、换皮、重新打包、转售、出租，或提供未经授权的收费托管服务。</p></div>
+        </div>
       </div>
-      <div class="license-dialog-rule is-restricted">
-        <span aria-hidden="true">
-          <svg viewBox="0 0 24 24"><rect x="6.5" y="10" width="11" height="9" rx="2"></rect><path d="M9 10V7.8a3 3 0 0 1 6 0V10"></path></svg>
-        </span>
-        <div><strong>禁止再分发</strong><p>不得复制、换皮、重新打包、转售、出租，或提供未经授权的收费托管服务。</p></div>
-      </div>
+
+      <a class="license-dialog-link" id="downloadLicenseFull" href="#" target="_blank" rel="noopener noreferrer">
+        <span>阅读完整《最终用户许可协议》</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M9 8h7v7"></path></svg>
+      </a>
+
+      <footer class="license-dialog-actions">
+        <button class="license-dialog-secondary" type="button" data-license-close>暂不下载</button>
+        <button class="license-dialog-primary" id="acceptDownloadLicense" type="button">
+          <span>我已阅读并同意，继续下载</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"></path></svg>
+        </button>
+      </footer>
     </div>
 
-    <a class="license-dialog-link" id="downloadLicenseFull" href="#" target="_blank" rel="noopener noreferrer">
-      <span>阅读完整《最终用户许可协议》</span>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 16 16 8M9 8h7v7"></path></svg>
-    </a>
-
-    <footer class="license-dialog-actions">
-      <button class="license-dialog-secondary" type="button" data-license-close>暂不下载</button>
-      <button class="license-dialog-primary" id="acceptDownloadLicense" type="button">
-        <span>我已阅读并同意，继续下载</span>
+    <section class="license-dialog-download" id="downloadStartedState" aria-labelledby="downloadStartedTitle" aria-live="polite" hidden>
+      <span class="license-dialog-download-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="m6.5 12.5 3.25 3.25L17.8 7.7"></path></svg>
+      </span>
+      <h3 id="downloadStartedTitle" tabindex="-1">安装包已开始下载</h3>
+      <p>请在浏览器的下载列表中查看进度。安装包约 502 MB，下载时间取决于当前网络速度。</p>
+      <div class="license-dialog-download-meta">
+        <span id="downloadStartedVersion">MagicBoard</span>
+        <span>macOS · Apple Silicon 与 Intel</span>
+      </div>
+      <a class="license-dialog-primary license-dialog-retry" id="downloadFallbackLink" href="#" rel="noopener">
+        <span>没有开始？重新下载</span>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 19h14"></path></svg>
-      </button>
-    </footer>
+      </a>
+      <button class="license-dialog-secondary license-dialog-done" type="button" data-license-close>完成</button>
+    </section>
   </div>
 </section>
   <script>
@@ -7592,6 +7678,11 @@ a {
   var licensePanel = licenseDialog && licenseDialog.querySelector(".license-dialog-panel");
   var licenseFullLink = document.getElementById("downloadLicenseFull");
   var licenseAcceptButton = document.getElementById("acceptDownloadLicense");
+  var licenseConsent = document.getElementById("downloadLicenseConsent");
+  var downloadStartedState = document.getElementById("downloadStartedState");
+  var downloadStartedTitle = document.getElementById("downloadStartedTitle");
+  var downloadStartedVersion = document.getElementById("downloadStartedVersion");
+  var downloadFallbackLink = document.getElementById("downloadFallbackLink");
   var pendingDownloadUrl = "";
   var licenseTrigger = null;
   var prefersReducedMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -7600,6 +7691,18 @@ a {
   document.body.dataset.magicBoardSurface = "landing";
 
   if (!landing) return;
+
+  function resetLandingScroll() {
+    if (location.hash) return;
+    window.scrollTo(0, 0);
+  }
+
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  resetLandingScroll();
+  window.addEventListener("pageshow", function () {
+    resetLandingScroll();
+    requestAnimationFrame(resetLandingScroll);
+  });
 
   landing.querySelectorAll("[data-landing-top]").forEach(function (button) {
     button.addEventListener("click", function () {
@@ -7620,8 +7723,23 @@ a {
     if (!licensePanel) return [];
     return Array.from(licensePanel.querySelectorAll("a[href], button:not([disabled]), [tabindex]:not([tabindex='-1'])"))
       .filter(function (element) {
-        return !element.hasAttribute("hidden") && element.getAttribute("aria-hidden") !== "true";
+        return !element.hasAttribute("hidden") && !element.closest("[hidden]") && element.getAttribute("aria-hidden") !== "true";
       });
+  }
+
+  function showDownloadStarted(downloadUrl) {
+    if (!licenseConsent || !downloadStartedState) return;
+    licenseConsent.hidden = true;
+    downloadStartedState.hidden = false;
+    if (downloadStartedVersion) downloadStartedVersion.textContent = "MagicBoard " + (release.displayVersion || "最新版");
+    if (downloadFallbackLink) downloadFallbackLink.href = downloadUrl;
+    downloadStartedTitle && downloadStartedTitle.focus({ preventScroll: true });
+  }
+
+  function resetDownloadStarted() {
+    if (licenseConsent) licenseConsent.hidden = false;
+    if (downloadStartedState) downloadStartedState.hidden = true;
+    if (downloadFallbackLink) downloadFallbackLink.href = "#";
   }
 
   function closeLicenseDialog(restoreFocus) {
@@ -7631,6 +7749,7 @@ a {
     document.body.classList.remove("license-dialog-open");
     landing.inert = false;
     pendingDownloadUrl = "";
+    resetDownloadStarted();
     if (restoreFocus !== false && licenseTrigger && typeof licenseTrigger.focus === "function") licenseTrigger.focus();
     licenseTrigger = null;
   }
@@ -7642,6 +7761,7 @@ a {
     }
     licenseTrigger = trigger;
     pendingDownloadUrl = downloadUrl;
+    resetDownloadStarted();
     if (licenseFullLink) licenseFullLink.href = eulaUrl;
     licenseDialog.hidden = false;
     document.body.classList.add("license-dialog-open");
@@ -7663,8 +7783,9 @@ a {
 
     licenseAcceptButton.addEventListener("click", function () {
       var downloadUrl = pendingDownloadUrl;
-      closeLicenseDialog(false);
-      if (downloadUrl) startDownload(downloadUrl);
+      if (!downloadUrl) return;
+      startDownload(downloadUrl);
+      showDownloadStarted(downloadUrl);
     });
 
     licenseDialog.addEventListener("keydown", function (event) {
