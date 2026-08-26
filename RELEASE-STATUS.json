@@ -3,13 +3,13 @@
   "product": "MagicBoard",
   "channel": "stable",
   "status": "released",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "platform": "macOS",
   "architecture": "Intel + Apple Silicon",
-  "bridgeVersion": "0.9.11",
+  "bridgeVersion": "0.9.13",
   "publicDownloadEnabled": true,
-  "downloadUrl": "https://github.com/YIFF-by/magicboard-site/releases/download/v1.0.5/MagicBoard-Portable-v1.0.5-macOS-universal.zip",
-  "sha256": "fec3e010284ba3f9095c3455acab1e7597fe0a6bcf41f8b942a729f03a54ee2d",
-  "sizeBytes": 526139753,
-  "note": "MagicBoard v1.0.5 正式稳定版"
+  "downloadUrl": "https://github.com/YIFF-by/magicboard-site/releases/download/v1.0.6/MagicBoard-Portable-v1.0.6-macOS-universal.zip",
+  "sha256": "936301012e8db1d2c6c4c75aa54dc992f9558488196b6e231c7f5174263f2eca",
+  "sizeBytes": 526147239,
+  "note": "MagicBoard v1.0.6 正式稳定版"
 }
