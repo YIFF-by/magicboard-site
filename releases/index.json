@@ -1,14 +1,14 @@
 {
   "schemaVersion": 1,
   "product": "MagicBoard",
-  "latest": "1.0.12",
+  "latest": "1.0.20",
   "releases": [
     {
-      "version": "1.0.12",
+      "version": "1.0.20",
       "channel": "stable",
-      "publishedAt": "2026-09-06T09:31:25.200Z",
-      "manifestUrl": "./v1.0.12.json",
-      "releaseNotesUrl": "../release-notes/v1.0.12.md"
+      "publishedAt": "2026-09-09T02:44:43.103Z",
+      "manifestUrl": "./v1.0.20.json",
+      "releaseNotesUrl": "../release-notes/v1.0.20.md"
     }
   ]
 }
