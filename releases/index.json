@@ -1,8 +1,15 @@
 {
   "schemaVersion": 1,
   "product": "MagicBoard",
-  "latest": "1.0.25",
+  "latest": "1.0.29",
   "releases": [
+    {
+      "version": "1.0.29",
+      "channel": "stable",
+      "publishedAt": "2026-09-27T05:20:42.997Z",
+      "manifestUrl": "./v1.0.29.json",
+      "releaseNotesUrl": "../release-notes/v1.0.29.md"
+    },
     {
       "version": "1.0.25",
       "channel": "stable",
